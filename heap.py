@@ -11,12 +11,14 @@ class MaxHeap:
     def build_heap(self, arr: list):
         self.heap = [None] + [None]*len(arr)  # clear previous heap (will replace with new heap)
         self.size = 0
+        self.capacity = len(arr)  # new capacity
         for i in range(len(arr)):
             self.heap[i + 1] = arr[i]
             self.perc_up(i + 1)  # insert element
             self.size += 1
         return True
     # bottom up construction
+    # ignores initialized capacity
 
     def perc_up(self, i):
         while i // 2 != 0 and self.heap[i // 2] < self.heap[i]:
