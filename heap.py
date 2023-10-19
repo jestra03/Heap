@@ -17,7 +17,7 @@ class MaxHeap:
             self.perc_up(i + 1)  # insert element
             self.size += 1
         return True
-    # bottom up construction
+    # top down construction
     # ignores initialized capacity
 
     def perc_up(self, i):
@@ -30,3 +30,9 @@ class MaxHeap:
 
     def contents(self):
         return self.heap[1:]
+
+    def get_size(self):
+        return self.size
+
+    def get_capacity(self):
+        return self.capacity
