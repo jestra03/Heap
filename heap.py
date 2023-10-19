@@ -25,3 +25,6 @@ class MaxHeap:
         return True
     # will continue percolating until it has reached root (index 1) or the parent is greater than child node (inserted)
     # index of node is tracked as parent and child are swapped
+
+    def contents(self):
+        return self.heap[1:]
