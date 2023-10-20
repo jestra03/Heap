@@ -1,7 +1,6 @@
 # Heap [Data Structures]
 # Joshua Estrada
 
-
 import unittest
 from heap import *
 
@@ -37,6 +36,8 @@ class TestHeap(unittest.TestCase):
         arr = heap.heapsort(arr)
         self.assertEqual(arr, [1, 2, 3, 9, 15, 20, 27, 81])
 
+        arr = heap.heapsort_decending([1, 20, 9, 81, 2, 27, 15, 3])
+        self.assertEqual(arr, [81, 27, 20, 15, 9, 3, 2, 1])
 
 if __name__ == "__main__":
     unittest.main()

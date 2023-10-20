@@ -1,7 +1,6 @@
 # Heap [Data Structures]
 # Joshua Estrada
 
-
 class MaxHeap:
     def __init__(self, capacity=50):
         self.capacity = capacity
@@ -71,6 +70,15 @@ class MaxHeap:
         # builds a heap from a given array then returns the sorted arr using heap algorithm
         # in a new array, the max will be "popped" off the heap and added to array
         # since the elements "popped" are in descending order, the array is iterated backwards from end to start
+
+    def heapsort_decending(self, arr):
+        if len(arr) <= 1:
+            return arr
+        self.build_heap(arr)
+        sorted_arr = [None] * len(arr)  # initialize array of same length
+        for i in range(len(arr)):
+            sorted_arr[i] = self.dequeue()
+        return sorted_arr
 
     def build_heap_alternative(self, arr:list):
         self.heap = [None] + [None]*len(arr)  # clear previous heap (will replace with new heap)
