@@ -14,7 +14,7 @@ class MaxHeap:
         for i in range(len(arr), 0, -1):
             self.perc_down(i)
         return True
-    # bottom-up construction
+    # bottom-up construction || O(nlogn)
     # replaces initialized capacity with length of new list
 
     def perc_up(self, i):
@@ -52,7 +52,7 @@ class MaxHeap:
             self.perc_up(i + 1)  # insert element
             self.size += 1
         return True
-    # top-down construction
+    # top-down construction || O(n)
     # replaces initialized capacity with length of new list
 
     def contents(self):
