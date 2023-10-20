@@ -8,6 +8,23 @@ class MaxHeap:
         self.heap = [None] + [None]*capacity  # allocate new arr for heap (0 index not included)
         self.size = 0
 
+    def enqueue(self, item):
+        if self.is_full():
+            return False
+        self.size += 1
+        self.heap[self.size] = item  # add node to end
+        self.perc_up(self.size)  # insert (perc_up, upwards)
+        return True
+
+    def dequeue(self):
+        if self.is_empty():
+            return None
+        val = self.heap[1]  # save max
+        self.heap[1] = self.heap[self.size]  # set root node to end node
+        self.size -= 1  # end node is in "garbage collector"
+        self.perc_down(1)  # insert (perc_down, downwards)
+        return val
+
     def build_heap(self, arr: list):
         self.heap = [None] + arr
         self.size = self.capacity = len(arr)
@@ -56,10 +73,16 @@ class MaxHeap:
     # replaces initialized capacity with length of new list
 
     def contents(self):
-        return self.heap[1:]
+        return self.heap[1:self.size + 1]
 
     def get_size(self):
         return self.size
 
     def get_capacity(self):
         return self.capacity
+
+    def is_empty(self):
+        return self.size == 0
+
+    def is_full(self):
+        return self.size == self.capacity
