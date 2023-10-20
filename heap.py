@@ -71,7 +71,7 @@ class MaxHeap:
         # in a new array, the max will be "popped" off the heap and added to array
         # since the elements "popped" are in descending order, the array is iterated backwards from end to start
 
-    def heapsort_decending(self, arr):
+    def heapsort_descending(self, arr):
         if len(arr) <= 1:
             return arr
         self.build_heap(arr)
@@ -91,6 +91,9 @@ class MaxHeap:
         return True
     # top-down construction || O(n)
     # replaces initialized capacity with length of new list
+
+    def peek(self):
+        return self.heap[1]
 
     def contents(self):
         return self.heap[1:self.size + 1]
