@@ -13,6 +13,10 @@ class TestHeap(unittest.TestCase):
         exp = [81, 20, 27, 3, 2, 9, 15, 1]  # done by hand (white-boarding)
         self.assertEqual(heap.contents(), exp)
 
+        heap.build_heap_alternative([1, 20, 9, 81, 2, 27, 15, 3])
+        exp = [81, 20, 27, 3, 2, 9, 15, 1]  # done by hand (white-boarding)
+        self.assertEqual(heap.contents(), exp)
+
 
 if __name__ == "__main__":
     unittest.main()

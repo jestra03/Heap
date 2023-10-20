@@ -9,16 +9,13 @@ class MaxHeap:
         self.size = 0
 
     def build_heap(self, arr: list):
-        self.heap = [None] + [None]*len(arr)  # clear previous heap (will replace with new heap)
-        self.size = 0
-        self.capacity = len(arr)  # new capacity
-        for i in range(len(arr)):
-            self.heap[i + 1] = arr[i]
-            self.perc_up(i + 1)  # insert element
-            self.size += 1
+        self.heap = [None] + arr
+        self.size = self.capacity = len(arr)
+        for i in range(len(arr), 0, -1):
+            self.perc_down(i)
         return True
-    # top down construction
-    # ignores initialized capacity
+    # bottom-up construction
+    # replaces initialized capacity with length of new list
 
     def perc_up(self, i):
         while i // 2 != 0 and self.heap[i // 2] < self.heap[i]:
@@ -27,6 +24,36 @@ class MaxHeap:
         return True
     # will continue percolating until it has reached root (index 1) or the parent is greater than child node (inserted)
     # index of node is tracked as parent and child are swapped
+
+    def perc_down(self, i):
+        while i * 2 < self.size + 1:  # while left child
+            if i * 2 + 1 < self.size + 1:  # if right child also
+                if self.heap[i] < self.heap[i * 2] and self.heap[i * 2] >= self.heap[i * 2 + 1]:
+                    self.heap[i], self.heap[i * 2] = self.heap[i * 2], self.heap[i]
+                    i = i * 2
+                elif self.heap[i] < self.heap[i * 2 + 1] and self.heap[i * 2] < self.heap[i * 2 + 1]:
+                    self.heap[i], self.heap[i * 2 + 1] = self.heap[i * 2 + 1], self.heap[i]
+                    i = i * 2 + 1
+                else:  # both children are smaller, parent is max
+                    break
+            elif self.heap[i] < self.heap[i * 2]:
+                self.heap[i], self.heap[i * 2] = self.heap[i * 2], self.heap[i]
+                i = i * 2
+            else:
+                break
+        return True
+
+    def build_heap_alternative(self, arr: list):
+        self.heap = [None] + [None]*len(arr)  # clear previous heap (will replace with new heap)
+        self.size = 0
+        self.capacity = len(arr)  # new capacity
+        for i in range(len(arr)):
+            self.heap[i + 1] = arr[i]
+            self.perc_up(i + 1)  # insert element
+            self.size += 1
+        return True
+    # top-down construction
+    # replaces initialized capacity with length of new list
 
     def contents(self):
         return self.heap[1:]
