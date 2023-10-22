@@ -109,3 +109,11 @@ class MaxHeap:
 
     def is_full(self):
         return self.size == self.capacity
+
+    def get_height(self):
+        a = self.size
+        tree_height = 0
+        while a != 0:
+            a //= 2
+            tree_height += 1
+        return tree_height
